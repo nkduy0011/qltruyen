@@ -1,0 +1,10 @@
+extends ../layouts/common
+
+block content
+	.container.text-center
+		h4= truyens.name
+			p
+				a(href= truyens.link, target='_blank') Link truyen
+			p #{truyens.chap}
+			form.form__post.d-flex.flex-column(action='/truyen/'+ truyens.id, method='POST')
+				button.btn.btn-primary Plus

@@ -1,0 +1,19 @@
+extends ../layouts/common
+
+block content
+	.container
+		.fs-3.mb-4 Post truyen
+		form.form__post.d-flex.flex-column(action='/truyen/post', method='POST')
+			label Name
+			input.form-control(type='text', name='name')
+			label Link anh
+			input.form-control(type='text', name='img')
+			label Tac gia
+			input.form-control(type='text', name='tacgia')
+			label Trang thai
+			input.form-control(type='text', name='trangthai')
+			label Link
+			input.form-control(type='text', name='link')
+			label Chap doc
+			input.form-control(type='number', name='chap')
+			button.btn.btn-primary Post

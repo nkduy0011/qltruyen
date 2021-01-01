@@ -1,0 +1,16 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.card {
+	padding: 0.2rem;
+	height: 100%;
+}
+.card .card-img-top{
+	width: 100%;
+	min-height: 25rem;
+}
+.form__post > *{
+	margin-bottom: 1rem;
+}

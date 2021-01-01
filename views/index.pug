@@ -1,0 +1,23 @@
+extends ./layouts/common
+
+block content
+	.container
+		form.d-flex.align-items-center(action='/truyen/search', method='GET')
+			input.me-2(type='text', placeholder='search' name='q' value= value)
+			button.btn-sm(class='btn btn-info') Search
+		.fs-3.mb-4 Danh sach truyen
+		.card-group.row
+			each truyen in truyens
+				.col-12.col-md-3.mb-3
+					.card.border-info.mx-1
+						img.card-img-top(src= truyen.img, alt='...')
+						.card-body
+							.fs-4.card-title #{truyen.name}
+							p.card-text tac gia: #{truyen.tacgia}
+							p.card-text trang thai: #{truyen.trangthai}
+						.card-footer
+							a.btn.btn-primary(href='/truyen/' + truyen.id) View
+
+	
+
+	
