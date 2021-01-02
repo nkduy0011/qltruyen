@@ -1,0 +1,14 @@
+extends ../layouts/common
+
+block content
+	.container
+		if errors
+			each error in errors
+				.alert.alert-danger #{error}
+		.fs-3.mb-4 Login
+		form.form__post.d-flex.flex-column(action='/user/login', method='POST')
+			label(for='name-post') Email
+			input#name-post.form-control(type='text', name='email' value = value ? value.email : "")
+			label(for='img-post') Password
+			input#img-post.form-control(type='password', name='password' value = value ? value.password : "")
+			button.btn.btn-primary Post

@@ -2,9 +2,11 @@ extends ./layouts/common
 
 block content
 	.container
-		form.d-flex.align-items-center(action='/truyen/search', method='GET')
-			input.me-2(type='text', placeholder='search' name='q' value= value)
-			button.btn-sm(class='btn btn-info') Search
+		.top_content.d-flex.justify-content-between
+			form.d-flex.align-items-center(action='/search', method='GET')
+				input.me-2(type='text', placeholder='search' name='q' value= value)
+				button.btn-sm(class='btn btn-info') Search
+			a.btn.btn-primary(href='user/login') Login
 		.fs-3.mb-4 Danh sach truyen
 		.card-group.row
 			each truyen in truyens
