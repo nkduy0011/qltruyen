@@ -6,14 +6,12 @@ var db = require('./db');
 
 var port = 3000;
 
-const shortid = require('shortid');
-
 var bodyParser = require('body-parser');
-
-app.use('/truyen', Truyenrouter);
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.use('/truyen', Truyenrouter);
 
 app.set('view engine', 'pug');
 app.set('views', './views');
