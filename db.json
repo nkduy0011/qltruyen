@@ -57,8 +57,9 @@
   ],
   "users": [
     {
+      "name": "admin",
       "email": "abc123@gmail.com",
-      "password": "123456a@",
+      "password": "ceea23519f6f86ad67e9f798bf8002cb",
       "id": "1"
     }
   ]

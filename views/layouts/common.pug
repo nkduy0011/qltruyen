@@ -10,5 +10,8 @@ html
 					.menu.d-flex.align-items-center
 						a.navbar-brand.fs-1(href="/") QL Truyen
 						a.nav-link(href="/truyen/post") Post truyen
+					.user
+						if(user)
+							a(href='#')= user.name
 		block content
 		block footer

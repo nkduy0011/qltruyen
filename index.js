@@ -1,5 +1,8 @@
-var express = require('express')
+require('dotenv').config();
+
+var express = require('express');
 var app = express();
+
 var truyenrouter = require('./routes/truyen.route');
 var usersrouter = require('./routes/users.route');
 var usermiddleware = require('./middleware/user.middleware');
@@ -15,7 +18,7 @@ var cookieParser = require('cookie-parser');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.use(cookieParser());
+app.use(cookieParser(process.env.SESSION_SECRET),);
 
 app.use('/truyen', usermiddleware.requireuser, truyenrouter);
 app.use('/user', usersrouter);
@@ -26,8 +29,14 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
+	var page = parseInt(req.query.page) || 1;
+	var perpage = 4;
+
+	var begin = (page-1)*4;
+	var end = page*4;
   res.render('index',{
-  	truyens: db.get('truyens').value()
+  	truyens: db.get('truyens').value().slice(begin,end),
+  	page: page
   });
 });
 
