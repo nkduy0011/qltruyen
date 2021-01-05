@@ -3,7 +3,7 @@ module.exports.post = function(req, res, next) {
 	if(!req.body.name){
 		errs.push('Name is required')
 	}
-	if(!req.body.img){
+	if(!req.body.img && !req.file.path){
 		errs.push('Image is required')
 	}
 	if(!req.body.tacgia){

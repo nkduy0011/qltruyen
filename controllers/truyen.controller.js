@@ -8,6 +8,7 @@ module.exports.renderpost = function(req, res){
 
 module.exports.post = function (req, res){
 	req.body.id = shortid.generate();
+	req.body.img = req.file.path.slice(7);
 	db.get('truyens').push(req.body).write();
 	res.redirect('/');	
 };

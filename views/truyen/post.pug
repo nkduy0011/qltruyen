@@ -6,11 +6,12 @@ block content
 			each error in errors
 				.alert.alert-danger #{error}
 		.fs-3.mb-4 Post truyen
-		form.form__post.d-flex.flex-column(action='/truyen/post', method='POST')
+		form.form__post.d-flex.flex-column(action='/truyen/post', method='POST', enctype='multipart/form-data')
 			label(for='name-post') Name
 			input#name-post.form-control(type='text', name='name' value = value ? value.name : "")
 			label(for='img-post') Link anh
-			input#img-post.form-control(type='text', name='img' value = value ? value.img : "")
+			input#img-post.form-control(type='text', name='img' placeholder='Image link' value = value ? value.img : "")
+			input#img-post.form-control(type='file', name='img')
 			label(for='tacgia-post') Tac gia
 			input#tacgia-post.form-control(type='text', name='tacgia' value = value ? value.tacgia : "")
 			label(for='trangthai-post') Trang thai
