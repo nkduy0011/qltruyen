@@ -1,32 +1,28 @@
-var db = require ('../db')
-
-const shortid = require('shortid');
+var truyens = require('../models/truyen.model');
 
 module.exports.renderpost = function(req, res){
 	res.render('truyen/post');
 };
 
-module.exports.post = function (req, res){
-	req.body.id = shortid.generate();
-	req.body.img = req.file.path.slice(7);
-	db.get('truyens').push(req.body).write();
+module.exports.post = async function (req, res){
+	if(req.file){
+		req.body.img = req.file.path.slice(7);
+	}
+	await truyens.create(req.body);
 	res.redirect('/');	
 };
 
-module.exports.view = function(req, res){
+module.exports.view = async function(req, res){
 	var id = req.params.id;
-	var truyen = db.get('truyens')
-	.find({ id: id }).value()
+	var truyen = await truyens.findById(id);
 	res.render('truyen/view', {
 		truyens : truyen
 	});
 };
 
-module.exports.pluschap = function (req, res){
+module.exports.pluschap = async function (req, res){
 	var id = req.params.id;
-	var truyen = db.get('truyens')
-	.find({ id: id }).value()
-	db.set('truyens.chap', truyen.chap++)
-  .write()
+	var newchap = parseInt(req.body.chap) + 1;
+	await truyens.findByIdAndUpdate(id, {"chap": newchap});
 	res.redirect('/truyen/'+ id);
 };

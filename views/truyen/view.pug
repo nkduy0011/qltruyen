@@ -5,6 +5,6 @@ block content
 		h4= truyens.name
 			p
 				a(href= truyens.link, target='_blank') Link truyen
-			p #{truyens.chap}
 			form.form__post.d-flex.flex-column(action='/truyen/'+ truyens.id, method='POST')
+				input.text-center(type='text', readonly,name='chap', value = truyens.chap) 
 				button.btn.btn-primary Plus

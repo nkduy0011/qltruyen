@@ -2,47 +2,55 @@ require('dotenv').config();
 
 var express = require('express');
 var app = express();
+var port = 3000;
 
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URL);
+
+var truyens = require('./models/truyen.model');
+var apiTruyenRoute = require('./api/routes/truyen.route')
 var truyenrouter = require('./routes/truyen.route');
 var usersrouter = require('./routes/users.route');
 var usermiddleware = require('./middleware/user.middleware');
 
-var db = require('./db');
-
-var port = 3000;
-
-var bodyParser = require('body-parser');
-
-var cookieParser = require('cookie-parser');
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(cookieParser(process.env.SESSION_SECRET),);
 
-app.use('/truyen', usermiddleware.requireuser, truyenrouter);
-app.use('/user', usersrouter);
-
 app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
+app.use('/api/truyens', apiTruyenRoute)
+app.use('/truyen', usermiddleware.requireuser, truyenrouter);
+app.use('/user', usersrouter);
+
+app.get('/', async function (req, res) {
 	var page = parseInt(req.query.page) || 1;
 	var perpage = 4;
 
 	var begin = (page-1)*4;
 	var end = page*4;
-  res.render('index',{
-  	truyens: db.get('truyens').value().slice(begin,end),
-  	page: page
-  });
+
+	var truyen = await truyens.find();
+	res.render('index',{
+		truyens: truyen.slice(begin,end),
+		page: page
+	});
 });
 
-app.get('/search', function(req, res){
+app.get('/search', async function(req, res){
 	var q = req.query.q;
-	var matchTruyen = db.get('truyens').value().filter(function(truyen) {
+
+	var truyen = await truyens.find();
+
+	var matchTruyen = truyen.filter(function(truyen) {
 		if(q){
 			return truyen.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
 		}
