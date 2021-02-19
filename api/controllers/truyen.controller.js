@@ -5,10 +5,10 @@ module.exports.index = async function(req, res){
 	res.json(truyen);
 };
 
-// module.exports.post = async function (req, res){
-// 	if(req.file){
-// 		req.body.img = req.file.path.slice(7);
-// 	}
-// 	var truyen = await truyens.create(req.body);
-// 	res.json(truyen);	
-// };
+module.exports.post = async function (req, res){
+	if(req.file){
+		req.body.img = req.file.path.slice(7);
+	}
+	var truyen = await truyens.create(req.body);
+	res.json(truyen);	
+};

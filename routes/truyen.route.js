@@ -14,8 +14,10 @@ router.get('/post', controller.renderpost);
 
 router.post('/post', upload.single('img'),validate.post, controller.post);
 
-router.get('/:id', controller.view);
+router.post('/del/:id', controller.del);
 
-router.post('/:id', controller.pluschap);
+router.get('/view/:id', controller.view);
+
+router.post('/plushchap/:id', controller.pluschap);
 
 module.exports = router;

@@ -24,5 +24,11 @@ module.exports.pluschap = async function (req, res){
 	var id = req.params.id;
 	var newchap = parseInt(req.body.chap) + 1;
 	await truyens.findByIdAndUpdate(id, {"chap": newchap});
-	res.redirect('/truyen/'+ id);
+	res.redirect('/truyen/view/'+ id);
+};
+
+module.exports.del = async function (req, res){
+	var id = req.params.id;
+	await truyens.deleteOne({"_id": id});
+	res.redirect('/');
 };

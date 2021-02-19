@@ -5,6 +5,8 @@ block content
 		h4= truyens.name
 			p
 				a(href= truyens.link, target='_blank') Link truyen
-			form.form__post.d-flex.flex-column(action='/truyen/'+ truyens.id, method='POST')
+			form.form__post.d-flex.flex-column(action='/truyen/plushchap/'+ truyens.id, method='POST')
 				input.text-center(type='text', readonly,name='chap', value = truyens.chap) 
 				button.btn.btn-primary Plus
+			form.form__post.d-flex.flex-column(action='/truyen/del/'+ truyens.id, method='POST')
+				button.btn.btn-danger Xoa

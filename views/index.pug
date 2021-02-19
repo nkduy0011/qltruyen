@@ -8,7 +8,7 @@ block content
 		.fs-3.mb-4 Danh sach truyen
 		.card-group.row.mb-4
 			each truyen in truyens
-				.col-12.col-md-3.mb-3
+				.col-12.col-md-6.col-lg-3.mb-3
 					.card.border-info.mx-1
 						img.card-img-top(src= truyen.img, alt='...')
 						.card-body
@@ -16,7 +16,7 @@ block content
 							p.card-text tac gia: #{truyen.tacgia}
 							p.card-text trang thai: #{truyen.trangthai}
 						.card-footer
-							a.btn.btn-primary(href='/truyen/' + truyen.id) View
+							a.btn.btn-primary(href='/truyen/view/' + truyen.id) View
 		ul.pagination.d-flex.justify-content-end
 			if page>1
 				li.page-item

@@ -12,6 +12,6 @@ var controller = require('../controllers/truyen.controller');
 
 router.get('/', controller.index);
 
-// router.post('/', upload.single('img'),validate.post, controller.post);
+router.post('/', upload.single('img'),validate.post, controller.post);
 
 module.exports = router;
